@@ -1,0 +1,70 @@
+-------------------------------------------------------------------
+topic jadid ---> a new app ---> type script and axios for our request
+
+how to start a typescript-react project
+type script --> adds static typing so our variables are going to have types , this prevents runtime errors 
+it moves the errors to compoile time errors 
+alabte mishe ye react application e ke az ghabl darish ro behesh typescript ezaf kuni
+vali sade tar ine ke az hamoon aval type script ro ba react shoro kuni
+
+dar internet boror be site --> https://create-react-app.dev/docs/adding-typescript/
+boro to folder React et va bezan --> npx create-react-app cryptocurrencies --template typescript
+
+age negah kuni ye seri tafavotha hast ---> react-app-env.d.ts ro negah kuni mibini
+file haye reportWebVitals.ts va setupTests.ts ro pak kun chun test nemikhaym anjam bedim
+App.test ro ham pak kun
+logo.svg ro pak kun
+
+tsconfig.json ---> config your typescrpt rules
+
+dar kul alan deghat kuni filehaye javascript alan be format e .tsx taghir kardan
+dar App.css content esho pak kun
+dar App.tsx ham logo import shode ro pak kun
+
+dar index.tsx ham reportWebVitals va entehaye khat ro pak kun va comment haye balasho
+
+dar App.tsx ham harchi toye div hast ro pak kun va tosh benvis hello
+hala bezan npm start ta run she albate age ye react app dg ham ghablesh run bashe warning mide ke aya mikhay toye ye port dg run kunam ya na
+
+hala ye typescript app dari!!
+
+hala axios ro ham mikhaym use kunim --> axios is another way to make request ---> shabih fetch hast vali clean tar hast
+install axios -> npm install axios
+import axios from 'axios'
+
+make a request to API ---> good crypto currency api without key is https://www.coingecko.com/ --> felan ke api key nemikhan va khoobe azash use kunim 
+vase use kardan az API esh coingecko api documnetation ro search kun
+masalan dar ghesmate simple drop down ro baz kun va az ghesmate ---> ids bede ke az coins/list oon id haro bayad peyda kuni --> masalan bede "bitcoin"
+bad compare to "usd" bezan --> bad execute ro bezan
+ye hamchin response e daryaf mikuni
+{
+  "bitcoin": {
+    "usd": 17008.48
+  }
+}
+
+in url ---> https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd --> in url ro ham ke balash behet dade dar browser bezani hamin json bala ro neshoon mide
+
+
+alabte list of coins behtare yani boro dar section coins va list vared kun --> dovomi ro try kun alabte chun avali hame coin haro migire ke kheili tool mikeshe
+dar dovomi mitoni set kuni 100 ta dade masalan begiri
+https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false
+
+
+
+  let url= 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false'; // Type infer mishe be string!
+  url = 5; //ERROR mide chun be string ke nemishe addad dad --> pas typescrpipt khoobe chun predictable behaviour dare
+
+
+
+farghe axios ba fetch
+axios.get(url).then((response)=>{
+    console.log(response.data) ;  // dg mesle fetch nist ke return response.json() kuni va bad dar then e dovom azash use kuni ---> haminja mostaghi response.data() ro migiri
+})
+
+
+undefined --> variable has no value
+null --> null is a value which is nothing
+
+dar App.tsx age ternary cryptos ? ro nazari typescript gir mide mige momkene null ya undefined bashe value zeman typescript be name e property ha gir mide pas khoobe bayad daghigh benvisi
+
