@@ -26,7 +26,9 @@ function App() {
                         // console.log(c);
                         setSelected(c);
                     }}
+                    defaultValue = "default"
                 >
+                    <option value='default'>Choose an option</option>
                     {cryptos // nokte khoobe typescript ine ke age in ternary ro ham nazari momkene error bede typescript
                         ? cryptos.map((crypto) => {
                               return (
