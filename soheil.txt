@@ -68,3 +68,51 @@ null --> null is a value which is nothing
 
 dar App.tsx age ternary cryptos ? ro nazari typescript gir mide mige momkene null ya undefined bashe value zeman typescript be name e property ha gir mide pas khoobe bayad daghigh benvisi
 
+------------------------------
+creating a compoent with typescript
+
+az in site use kun ---> https://react-typescript-cheatsheet.netlify.app/
+
+
+alana dar CryptoSummary dg --> export default function CryptoSummary(props)  --> injoori dg error mide mige props implicitly type esh any hast
+mishe inkaro kard ta error bere:
+export default function CryptoSummary(props: any) --> ke begim props mitone harchizi bashe vali hadaf az typescript in nist!!!
+rah hal dorost ine ke destructure kunim va jaye inke props ro begirim crypto object ro kamel begirim
+ye new type ham dorost mikunim be name AppProps
+nokte ine --> DEFINE WHAT YOU EXPECT --> 
+
+expect mikunim ke ye crypto az type e object biad.. ama aya dorste ini ke paeen neveshtim?
+
+export type AppProps = {
+    crypto: object
+}
+
+no dorost nist ---> chun jense crypto object nist balke oon type ee hast ke dar App.tsx tarif kardim yani Crypto
+pas in doroste:
+
+export type AppProps = {
+    crypto: Crypto
+}
+
+Crypto ham bayad import beshe
+
+hala ke {crypto} ro dari destructure  mikuni exact property ro migiri
+
+
+nokte jaleb tar dar typescript ham ine ke mitoni return type ro ham define kune ba gozashtan colon bad az input e function
+chizi ke alan return mikunim JSX.Element hast --> dorost nanvisi error mide
+
+dar kul vali caleb mige return type define kardan vase compoent helpful nist pas age mikhay bezaresh vali niazi nist
+
+
+zeman ma in type hayee ke ijad kardim rota alan inline neveshtim vali behtare bebarim toye ye file dg benvisim
+albate hamashono niar on to masalan dar CryptoSummary.tsx type e ke oon to hast specific hast vase khodesh
+vali age az ye type kheili jaha use mikuni bezar oon to
+kholase tamame type haye generaleto bezar to Types.tsx
+
+
+What about interfaces??? --> dar cheat sheet site e react bebin
+dar in page https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/basic_type_example bia paeen negah kun section e Types or interfaces ro :
+rule ine ---> use interfaces util you need types
+bad mige consider using types for your react components props and states for consistency because its more constrained
+ma ham vase hamin az type dar component use kardim
