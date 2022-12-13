@@ -129,3 +129,28 @@ agar vase option attribute value nazari e.targe.value chi mire tosh ? mohtaviate
 
 
 in -->  <CryptoSummary crypto={selected} /> --> dar App.tsx error mide ama in na --->  {selected? <CryptoSummary crypto={selected} /> : null}
+
+
+-----------------------------------
+Display a chart for crypto currency
+make a request to get historical data 
+package chart.js hast -->https://www.chartjs.org/
+va wrapper roye react ham dare ke az in use mikunim --> https://react-chartjs-2.js.org/ ---> npm install --save chart.js react-chartjs-2 --> age gir kard joda joda nasb kun oon --save ro ham nazar
+react chartjs to sitesh example ham dare ke azash use kun --> masalan ino negah kun ---> https://react-chartjs-2.js.org/examples/line-chart
+
+
+do ta state e data va option ro besaz va typeshoon ro ham bede ama typeshoon chie?--> ino bekhoon https://react-chartjs-2.js.org/faq/typescript/
+dar nahayat miresi be inke ino import 2 ta type ro import kuni ---> import type { ChartData, ChartOptions } from 'chart.js';
+zemnan in do generic type hastan chun dar doc gofte  bayad benvisi masalan 'line' :
+interface LineProps {
+  options: ChartOptions<'line'>;
+  data: ChartData<'line'>;
+}
+
+be gheyre 'line' chizaye dg e ham dar doc hast
+
+
+dar site https://www.coingecko.com/en/api/documentation  --> ctrl+f bezan historical ro search kun ta data historical ro az API begir --> dovomi ro begir
+
+bitcoin , usd , 30 , daily ro bede be api bebin chi mide ---> ye time stamp mide va some price
+url ro copy kun va azash dar App.tsx use kun

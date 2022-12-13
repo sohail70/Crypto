@@ -4,10 +4,39 @@ import axios from 'axios';
 import CryptoSummary from './components/CryptoSummary';
 import { Crypto } from './Types';
 
+import type { ChartData, ChartOptions } from 'chart.js';
+
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+
 function App() {
     //Tell the useState what type to expect - deghat kun useState default esh be undefined hast pas benvis null to parantez onvaght age ternary paeen dar cryptos? ro nazari typescript mige object is possibly null ama age null ro nazari typescript mige possibly null or undefined
     const [cryptos, setCryptos] = useState<Crypto[] | null>(null); // to say that Crypto is the type and [] to say that its an array. null ham gozashtim ta begim agar chzi return nashod null hast-->in va export type Crypto bala ro nazari nemitoni .map bezani ro crypto
     const [selected, setSelected] = useState<Crypto | null>(); //null bezari to deafult value khate setSelecte(c) eror mide
+    const [data, setData] = useState<ChartData<'line'>>(); //jaye line mitoni har chi dost dari bezari
+    const [options, setOptions] = useState<ChartOptions<'line'>>({
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top' as const
+            },
+            title: {
+                display: true,
+                text: 'Chart.js Line Chart'
+            }
+        }
+    });
     useEffect(() => {
         const url =
             'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false'; // Type infer mishe be string!
@@ -25,10 +54,28 @@ function App() {
                         const c = cryptos?.find((x) => x.id === e.target.value); // To get the object of the thing that you selected in the dropp down --> from id to the object
                         // console.log(c);
                         setSelected(c);
+                        axios
+                            .get(
+                                'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=30&interval=daily'
+                            )
+                            .then((response) => {
+                                console.log(response.data); //agar dar conslode check kuni mibin ye object mide ke tosh ye prices array hast ke har elementesh do ta value timestamp a price ro dare
+                                setData({ // content in json ro az https://react-chartjs-2.js.org/examples/line-chart gereftim 
+                                    labels:[1,2,3,4],
+                                    datasets: [
+                                        {
+                                            label: 'Dataset 1',
+                                            data:[4,7,10,3],
+                                            borderColor: 'rgb(255, 99, 132)',
+                                            backgroundColor: 'rgba(255, 99, 132, 0.5)'
+                                        }
+                                    ]
+                                });
+                            });
                     }}
-                    defaultValue = "default"
+                    defaultValue="default"
                 >
-                    <option value='default'>Choose an option</option>
+                    <option value="default">Choose an option</option>
                     {cryptos // nokte khoobe typescript ine ke age in ternary ro ham nazari momkene error bede typescript
                         ? cryptos.map((crypto) => {
                               return (
@@ -40,7 +87,9 @@ function App() {
                         : null}
                 </select>
             </div>
-            {selected? <CryptoSummary crypto={selected} /> : null}
+            {selected ? <CryptoSummary crypto={selected} /> : null}
+            {data ? <Line options={options} data={data} /> : null}{' '}
+            {/* data is gonna come from coins API but we harcode the options as a default value in the above state */}
         </>
     );
 }
