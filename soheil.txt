@@ -116,3 +116,16 @@ dar in page https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-s
 rule ine ---> use interfaces util you need types
 bad mige consider using types for your react components props and states for consistency because its more constrained
 ma ham vase hamin az type dar component use kardim
+------------------------------------------------------
+
+lets have a drop down instead of a list of coins in the page
+contnent of the drop down comes from the API 
+
+az tag a select va option use mikunim va attrbiute key va value midim ---> key vase react use mishe chun age nadi react warning mide ke each props should have a unique id
+value ham mige chi clickc shode va target value ro to onChange hala dastrasi dari behesh
+
+
+agar vase option attribute value nazari e.targe.value chi mire tosh ? mohtaviate tag e option ke alan crypto.name hast mire tosh
+
+
+in -->  <CryptoSummary crypto={selected} /> --> dar App.tsx error mide ama in na --->  {selected? <CryptoSummary crypto={selected} /> : null}

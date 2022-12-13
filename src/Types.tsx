@@ -1,4 +1,3 @@
-
 export type Crypto = {
     ath: number;
     atl: number;
