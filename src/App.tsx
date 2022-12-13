@@ -61,11 +61,15 @@ function App() {
                             .then((response) => {
                                 console.log(response.data); //agar dar conslode check kuni mibin ye object mide ke tosh ye prices array hast ke har elementesh do ta value timestamp a price ro dare
                                 setData({ // content in json ro az https://react-chartjs-2.js.org/examples/line-chart gereftim 
-                                    labels:[1,2,3,4],
+                                    labels: response.data.prices.map((price: number[])=>{
+                                        return price[0];
+                                    }), //map faghat roye array kar mikune va data ham object hast ke tosh array e price darim
                                     datasets: [
                                         {
                                             label: 'Dataset 1',
-                                            data:[4,7,10,3],
+                                            data: response.data.prices.map((price: number[])=>{
+                                              return price[1];
+                                            }),
                                             borderColor: 'rgb(255, 99, 132)',
                                             backgroundColor: 'rgba(255, 99, 132, 0.5)'
                                         }
@@ -88,8 +92,8 @@ function App() {
                 </select>
             </div>
             {selected ? <CryptoSummary crypto={selected} /> : null}
-            {data ? <Line options={options} data={data} /> : null}{' '}
-            {/* data is gonna come from coins API but we harcode the options as a default value in the above state */}
+            {data ?<div style={{width:600}}> <Line options={options} data={data} /> </div> : null} {/* data is gonna come from coins API but we harcode the options as a default value in the above state */}
+            
         </>
     );
 }

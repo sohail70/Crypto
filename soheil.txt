@@ -154,3 +154,6 @@ dar site https://www.coingecko.com/en/api/documentation  --> ctrl+f bezan histor
 
 bitcoin , usd , 30 , daily ro bede be api bebin chi mide ---> ye time stamp mide va some price
 url ro copy kun va azash dar App.tsx use kun
+
+in ja tailwind ro nasb nakardim
+
