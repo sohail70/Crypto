@@ -56,7 +56,7 @@ function App() {
                         setSelected(c);
                         axios
                             .get(
-                                'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=30&interval=daily'
+                                `https://api.coingecko.com/api/v3/coins/${c?.id}/market_chart?vs_currency=usd&days=30&interval=daily`
                             )
                             .then((response) => {
                                 console.log(response.data); //agar dar conslode check kuni mibin ye object mide ke tosh ye prices array hast ke har elementesh do ta value timestamp a price ro dare

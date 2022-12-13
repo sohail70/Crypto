@@ -154,6 +154,11 @@ dar site https://www.coingecko.com/en/api/documentation  --> ctrl+f bezan histor
 
 bitcoin , usd , 30 , daily ro bede be api bebin chi mide ---> ye time stamp mide va some price
 url ro copy kun va azash dar App.tsx use kun
+'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=30&interval=daily'
+alabte deghat kun in male bitcoin hast ama bayad jaye bitcoin dar url bala ino bezari ---> ${} --> what ever you are gonna select
+IMPRORTANT ---> bayad az back tick yani `` use kuni ta betooni oon to chiz bezari yani mishe in: yani ${c?.id} --> yani harchi select shode chun oon to const c tarif kardi
+`https://api.coingecko.com/api/v3/coins/${c?.id}/market_chart?vs_currency=usd&days=30&interval=daily`
+
 
 in ja tailwind ro nasb nakardim
 
