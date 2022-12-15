@@ -200,3 +200,10 @@ return moment.unix(price[0]/1000).format(range===1 ? "HH:MM" : "MM-DD-YYYY"); //
 
 updating the title
 bayad setOption kuni ama toye deafult option haye bala inkaro nakun chun az chart js ke faghat vse line chart nemikhaym use kunim pas bezar in default bemone va paeen tar setOption kun  
+
+-----------------------------------------------
+small crypto currency portfolio calculator
+add kuni chanda crypto multply by the amount by the price and give a total portfolio value
+pas vaghti select mikuni bayad bere to ye listi 
+pas dar App.tsx ke const[selected , setSelected] = useState<Crypto | null>(); dari hala array toresh kun injoori:
+const[selected , setSelected] = useState<Crypto[]>([]); //default esh ham mikunim be empty array chun dar khate [...selected,c] gir mide age nazari --> null ro ham bayad bardari
