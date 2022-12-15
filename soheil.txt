@@ -173,3 +173,30 @@ MM --> 2 digit month like 06
 DD ---> 2 digits days like 14
 -------------------------------------------
 How to change the how much data to be displayed ---> like 7 days or 1 day or ...
+select and option for 30-7-1 day ro ezaf kun ---> hala functionlity bezar ---> mitoni network ro check kuni va ye bar ham dar UI currency ro avaz kuni va akharin request ro dar netwerk bebini va url ro bebini ke tosh 30 dare va modifyesh kuni jaye 30 bezari 7 masalan
+ye hamchin chizi hast ---> Request URL: https://api.coingecko.com/api/v3/coins/dogecoin/market_chart?vs_currency=usd&days=30&interval=daily
+
+
+nokte mohem --> alan dar select option jadid axios.get mikuni 
+va url et ham ine masalan ---> axios.get(`https://api.coingecko.com/api/v3/coins/${c?.id}/market_chart?vs_currency=usd&days=30&interval=daily`)
+alan chejoori {c?.id} anjam beshe ? chun dar onChange e bala in ro dar const c gozashte bodim ama dar paeen ke be bala dastrasinadarim pas che kunim? ye rah use kardan az state hast!
+va az tarafi dar paeen ke masalan set kardi 7 days bala ham bayad taghir kune pas in addad haro ham vasash state tarif kun
+switching between state and event alan ye name complex shode pas behtare vase consistency ham ke shode az state vase hamechi use kunim
+va kafie ke vaghti drop down ro change kardi faghat state ro update kuni va ye function define kuni vase any of those changes va az name e on function dar event handlers use kuni
+ravesh proper ham vaghti ke mikhay ye function e ro invoke kuni zamani ke state change rokh mide useEffect hast
+pas useeffect with a dependecy array of those state variables ro use kun dar App.tsx
+
+
+alabte deghat kuni masalan 7 days ro mizani graph 8 ta noghte yani 8 ta roz ro mide va hamintoor pas inja ro dorost benvis:
+                          <option value='29'>30 Days</option>
+                          <option value='6'>7 Days</option> 
+                          <option value='1'>1 Day</option>
+alabte man dast nazadam --> alabte string ro besorate number taghir dadim ke int bede jaye string
+zemnan vase 1 days ham interval ro hourly kun: az ternary to link use mikunim --> havaset bashe space e ezafe nazari ye vaght
+`https://api.coingecko.com/api/v3/coins/${selected?.id}/market_chart?vs_currency=usd&days=${range}&${range===1 ? 'interval=hourly' : 'interval=daily'}`
+format ro ham taghir bede ke hour beshe ne MM-DD-YYYY
+return moment.unix(price[0]/1000).format(range===1 ? "HH:MM" : "MM-DD-YYYY"); // two digit month like 06 and two digit days like 15
+
+
+updating the title
+bayad setOption kuni ama toye deafult option haye bala inkaro nakun chun az chart js ke faghat vse line chart nemikhaym use kunim pas bezar in default bemone va paeen tar setOption kun  
