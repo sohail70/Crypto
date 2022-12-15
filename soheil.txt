@@ -162,3 +162,14 @@ IMPRORTANT ---> bayad az back tick yani `` use kuni ta betooni oon to chiz bezar
 
 in ja tailwind ro nasb nakardim
 
+
+chejoori timestamp value ro convert kunim be more readable dates kunim ? ravesh ziade vali az package e moment use mikunim ke tabdil kunim nice formatted dates ijad kunim
+npm install moment
+import moment from 'moment' yadet nare dar App.tsx
+
+hala jaye inke return price[0]; kuni ke faghat time stamp ro return mikune bia ino return kun:
+return moment.unix(price[0]/1000).format("MM-DD"); // chera taghsim bar 1000 ? chun time stamp milisecond mide vali func e unix na pas taghsim bar 1000 mikunim va bad convert mikunim
+MM --> 2 digit month like 06
+DD ---> 2 digits days like 14
+-------------------------------------------
+How to change the how much data to be displayed ---> like 7 days or 1 day or ...

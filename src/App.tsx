@@ -18,6 +18,8 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
+import moment from 'moment';
+
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 function App() {
@@ -62,7 +64,7 @@ function App() {
                                 console.log(response.data); //agar dar conslode check kuni mibin ye object mide ke tosh ye prices array hast ke har elementesh do ta value timestamp a price ro dare
                                 setData({ // content in json ro az https://react-chartjs-2.js.org/examples/line-chart gereftim 
                                     labels: response.data.prices.map((price: number[])=>{
-                                        return price[0];
+                                        return moment.unix(price[0]/1000).format("MM-DD-YYYY"); // two digit month like 06 and two digit days like 15
                                     }), //map faghat roye array kar mikune va data ham object hast ke tosh array e price darim
                                     datasets: [
                                         {
