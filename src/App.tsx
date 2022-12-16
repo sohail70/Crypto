@@ -96,6 +96,23 @@ function App() {
                             });
     },[selected , range]); // har vaght state e selected or range taghir kard in useEffect run mishe
 */
+
+    useEffect(()=>{
+        console.log("SELECTEd" , selected);
+    },[selected]);
+
+    function updateOwned(crypto: Crypto , amount: number){
+        // console.log('updateOwned' , crypto, amount);
+        // console.log(selected);
+        let temp = [...selected];
+        let tempObj = temp.find((c)=> c.id===crypto.id) // c ro return kun age id esh ba id e crypto yeki bood
+        if(tempObj){
+            tempObj.owned = amount;  //age if e bala ro nazari error typescript mide in khat va age nazari if ro va bekhay az "?" use kuni ham ye error dg mide
+            setSelected(temp); //update selected with the new updated object
+        }
+        
+    }
+
     return (
         <>
             <div className="App">
@@ -130,11 +147,19 @@ function App() {
             </div>
             
             {/* {selected ? <CryptoSummary crypto={selected} /> : null} */}
-            {selected.map((s)=>{return <CryptoSummary crypto={s}/>}) } {/* farghesh ba khate bala ine ke alan chun array darim bayad map bezanim */ }
+            {selected.map((s)=>{return <CryptoSummary crypto={s} updateOwned={updateOwned}/>}) } {/* farghesh ba khate bala ine ke alan chun array darim bayad map bezanim */ }
 
 
             {/* {data ?<div style={{width:600}}> <Line options={options} data={data} /> </div> : null} //data is gonna come from coins API but we harcode the options as a default value in the above state */}
-            
+            {selected? "Your portfolio is worth: $"+selected.map((s)=>{
+                if(isNaN(s.owned)){
+                    return 0;
+                }
+                return  s.current_price * s.owned;
+            }).reduce((prev , current)=>{
+                // console.log("prev-current",prev , current);
+                return prev+current;
+            },0).toLocaleString(undefined,{minimumFractionDigits: 2 , maximumFractionDigits: 2}) :null}
         </>
     );
 }

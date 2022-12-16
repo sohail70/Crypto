@@ -207,3 +207,34 @@ add kuni chanda crypto multply by the amount by the price and give a total portf
 pas vaghti select mikuni bayad bere to ye listi 
 pas dar App.tsx ke const[selected , setSelected] = useState<Crypto | null>(); dari hala array toresh kun injoori:
 const[selected , setSelected] = useState<Crypto[]>([]); //default esh ham mikunim be empty array chun dar khate [...selected,c] gir mide age nazari --> null ro ham bayad bardari
+-------------------------------------------------
+
+aggregate datas together to get total portfolio 
+nested objects and aggregating data across those objects--> map and reduce
+deghat kuni ba ye seri component saro kar darim ke ye state dakhel har kodumeshoon hast ke mikhaym ona ro sum kunim?
+bayad ye joori state in component haro move up kunim be samte parent eshoon
+baraye in kar bayad az parent ye function pass down kuni ke ye state dar parent ro dar child, set kuni
+va prop ro dar child begir
+zemnan deghat kun typescript hast pas bayad har func e expect mikuni ro dar type benvisi
+
+
+zeman dar UI age chizi vared nakuni NaN neshoon mide ke inam fix kun ---> age khali bod don't display beshe!
+dar cryptosummary.tsx ye state be name e amount hast 
+
+
+vase total amount mishe az state dar App.tsx use kard ya ye property be crypto object ezafe kard ke keep track kune 
+ma ravesh dovom yani ro use mikunim 
+ye property ba name e owned ba type a number ijad mikunim
+pas mirim dar Types.tsx in property ro ezaf mikunim
+albate alan deghat kuni dar App.tsx age console.log(selected) kuni owned oon too nist
+bayad ye copy az oon object e selected begiri va bad owned ro behesh ezaf kuni
+oon object e ke mikhay grab kuni ro az id use kun ta peydash kuni
+va kholase update esh kun ke owned ro dashte bashe va bad set esh kun be existing state
+
+
+vase sum kardan hame az reduce use mikunim
+jaye inke ino return kuni ---> return  <p>{s.current_price * s.owned}</p>
+benvis:
+....
+.reduce((prev , current)=>{return prev+current;},0)  --> 0 starting value hast
+zemnan return ke mikuni mire toye prev zakhire mishe va dobare miad to
